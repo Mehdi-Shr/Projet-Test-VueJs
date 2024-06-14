@@ -1,6 +1,9 @@
 <template>
   <header>
     <nav class="uk-navbar-container uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+        <RouterLink to="/">Comparateur d'eaux</RouterLink>
+      </div>
       <div class="uk-navbar-right">
 
         <div class="uk-navbar-item">
@@ -48,5 +51,17 @@ export default {
 </script>
 
 <style scoped>
+nav {
+  padding: 25px;
+  background-color: #02C39A!important;
+}
 
+nav a {
+  color: white;
+}
+
+.uk-navbar-left a {
+  color: white;
+  font-size: 30px;
+}
 </style>

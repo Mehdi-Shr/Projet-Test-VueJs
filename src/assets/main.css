@@ -85,3 +85,7 @@ hr.rounded {
     flex-direction: column;
     align-items: center;
 }
+
+button {
+    background-color: #00A896!important;
+}

@@ -123,7 +123,7 @@ main {
 
 .comparator {
   width: 30%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 130px);
   position: fixed;
   bottom: 0;
   right: 0;
@@ -131,8 +131,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 100px 0;
-  border-left: 4px solid #f8f8f8;
+  padding: 100px 30px;
+  border-left: 4px solid #05668D;
 }
 
 .loader {
@@ -165,7 +165,7 @@ main {
 }
 
 .card {
-  background-color: #f8f8f8;
+  background-color: #969696;
   width: 200px;
   height: 300px;
   border-radius: 5px;
@@ -176,5 +176,9 @@ main {
   flex-direction: row;
   gap: 25px;
   align-items: center;
+}
+
+h2 {
+  color: #05668D;
 }
 </style>

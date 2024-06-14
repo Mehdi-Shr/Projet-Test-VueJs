@@ -58,17 +58,6 @@
     />
 
     <FormKit
-        type="number"
-        label="qualite"
-        name="qualite"
-        validation="required"
-        placeholder="3"
-        :validation-messages="{
-                required: 'Veillez renseigner la qualité de la bouteille',
-              }"
-    />
-
-    <FormKit
         type="text"
         label="Nom de la source d'extraction"
         name="source"
@@ -102,17 +91,6 @@
         validation="required"
         :validation-messages="{
                 required: 'Veillez renseigner une url d\'image représentant la bouteille',
-              }"
-    />
-
-    <FormKit
-        type="text"
-        label="URL de l'image représenant le logo de la marque du produit"
-        name="logoMarque"
-        placeholder="http://image.fr/..."
-        validation="required"
-        :validation-messages="{
-                required: 'Veillez renseigner une url d\'image représentant la marque du produit',
               }"
     />
     <p id="message-error" v-if="error">{{ error }}</p>
