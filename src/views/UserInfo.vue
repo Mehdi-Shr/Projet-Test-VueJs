@@ -40,5 +40,8 @@ export default {
 </script>
 
 <style scoped>
-
+.infos {
+  margin: auto;
+  width: fit-content;
+}
 </style>

@@ -27,7 +27,7 @@
           <div class="uk-navbar-item">
             <RouterLink to="/user">Mon compte</RouterLink>
           </div>
-          <button @click="deconnexion">
+          <button class="deconnexion" @click="deconnexion">
             Déconnexion
           </button>
         </template>
@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style scoped>
+header {
+  margin-bottom: 100px;
+}
 nav {
   padding: 25px;
   background-color: #02C39A!important;
@@ -63,5 +66,13 @@ nav a {
 .uk-navbar-left a {
   color: white;
   font-size: 30px;
+}
+
+.deconnexion {
+  padding: 15px;
+  background-color: white!important;
+  color: #02C39A;
+  border: 0px;
+  border-radius: 5px;
 }
 </style>

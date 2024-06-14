@@ -2,42 +2,44 @@
   <main>
     <div class="product-list">
       <h1>Nos eaux</h1>
-      <SearchBar/>
+      <SearchBar />
       <div v-if="loading" class="loader"></div>
       <div v-else class="products">
-        <ProductCard v-for="product in productsToDisplay"
-                     :key="product._id"
-                     :marque="product.marque"
-                     :image="product.image"
-                     :id="product._id"
-                     :toCompare="false"
-                     @showDetails="showDetails"
-                     @compare="addToComparator"
+        <ProductCard
+          v-for="product in productsToDisplay"
+          :key="product._id"
+          :marque="product.marque"
+          :image="product.image"
+          :id="product._id"
+          :toCompare="false"
+          @showDetails="showDetails"
+          @compare="addToComparator"
         />
       </div>
-      <p v-if="error">{{error}}</p>
+      <p v-if="error">{{ error }}</p>
     </div>
     <div class="comparator">
       <h2>Produits à comparer</h2>
       <div class="productToCompare">
-
-        <ProductCard v-if="$store.getters.getProducts.product1"
-                     :marque="$store.getters.getProducts.product1.marque"
-                     :image="$store.getters.getProducts.product1.image"
-                     :id="$store.getters.getProducts.product1._id"
-                     :toCompare="true"
-                     @remove="removeFromComparator"/>
+        <ProductCard
+          v-if="$store.getters.getProducts.product1"
+          :marque="$store.getters.getProducts.product1.marque"
+          :image="$store.getters.getProducts.product1.image"
+          :id="$store.getters.getProducts.product1._id"
+          :toCompare="true"
+          @remove="removeFromComparator"
+        />
         <div class="card" v-else></div>
 
-        <ProductCard v-if="$store.getters.getProducts.product2"
-                     :marque="$store.getters.getProducts.product2.marque"
-                     :image="$store.getters.getProducts.product2.image"
-                     :id="$store.getters.getProducts.product2._id"
-                     :toCompare="true"
-                     @remove="removeFromComparator"/>
-        <div class="card" v-else>
-
-        </div>
+        <ProductCard
+          v-if="$store.getters.getProducts.product2"
+          :marque="$store.getters.getProducts.product2.marque"
+          :image="$store.getters.getProducts.product2.image"
+          :id="$store.getters.getProducts.product2._id"
+          :toCompare="true"
+          @remove="removeFromComparator"
+        />
+        <div class="card" v-else></div>
       </div>
 
       <div class="buttons">
@@ -49,7 +51,7 @@
 </template>
 
 <script>
-import {getAll} from "@/api/product";
+import { getAll } from "@/api/product";
 import ProductCard from "@/components/ProductCard.vue";
 import router from "@/router";
 import product from "@/store/productStore";
@@ -57,11 +59,11 @@ import SearchBar from "@/components/searchBar.vue";
 
 export default {
   name: "NewProduct",
-  components: {ProductCard, SearchBar},
+  components: { ProductCard, SearchBar },
   data: () => ({
     products: [],
     loading: true,
-    error: null
+    error: null,
   }),
   computed: {
     productsToDisplay() {
@@ -70,36 +72,54 @@ export default {
   },
   methods: {
     showDetails(id) {
-      router.push(`/product/${id}`)
+      router.push(`/product/${id}`);
     },
     addToComparator(id) {
-      this.$store.commit("addProduct", this.products.find(product => product._id == id));
+      this.$store.commit(
+        "addProduct",
+        this.products.find((product) => product._id == id)
+      );
     },
     removeFromComparator(id) {
-      this.$store.commit("removeProduct", this.products.find(product => product._id == id));
+      this.$store.commit(
+        "removeProduct",
+        this.products.find((product) => product._id == id)
+      );
     },
     compare() {
-      if (!this.$store.getters.getProducts.product1 || !this.$store.getters.getProducts.product2) {
-        alert("Veuillez selectionner 2 produits à comparer")
+      if (
+        !this.$store.getters.getProducts.product1 ||
+        !this.$store.getters.getProducts.product2
+      ) {
+        alert("Veuillez sélectionner 2 produits à comparer");
       } else {
-        router.push(`/comparator?p1=${this.$store.getters.getProducts.product1._id}&p2=${this.$store.getters.getProducts.product2._id}`)
+        router.push(
+          `/comparator?p1=${this.$store.getters.getProducts.product1._id}&p2=${this.$store.getters.getProducts.product2._id}`
+        );
       }
     },
     reset() {
       this.$store.commit("reset");
+    },
+    async fetchProducts() {
+      try {
+        const response = await getAll();
+        if (response.status === 200) {
+          this.products = response.body;
+        } else {
+          this.error = response.body.message;
+        }
+      } catch (error) {
+        this.error = error.message;
+      } finally {
+        this.loading = false;
+      }
     }
-
   },
-  async mounted() {
-    const response = await getAll();
-    if (response.status == 200) {
-      this.products = response.body
-    } else {
-      this.error = response.body.message
-    }
-    this.loading = false;
-  }
-}
+  mounted() {
+    this.fetchProducts();
+  },
+};
 </script>
 
 <style>
@@ -122,7 +142,7 @@ main {
 }
 
 .comparator {
-  width: 30%;
+  width: fit-content;
   height: calc(100vh - 130px);
   position: fixed;
   bottom: 0;
