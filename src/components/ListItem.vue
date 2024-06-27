@@ -12,7 +12,6 @@
              :type=item.type
              :typeBouchon=item.typeBouchon
              :volume=item.volume
-             :qualite=item.qualite
              :in-comparator = inComparator
     />
   </div>
@@ -20,6 +19,7 @@
 
 <script>
 import ItemRow from "@/components/ItemRow.vue";
+import {getAll} from "@/api/product";
 
 export default {
   components: {
@@ -37,7 +37,7 @@ export default {
   },
   methods : {
     async getData() {
-      const res = await fetch("http://localhost:3333/products");
+      const res = await getAll();
       this.items = await res.json();
       this.loading = false;
     }

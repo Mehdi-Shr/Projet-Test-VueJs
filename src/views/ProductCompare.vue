@@ -13,7 +13,6 @@
         <p><span class="infos-product">Type d'eau :</span> {{ item.type }}</p>
         <p><span class="infos-product">Type de bouchon :</span> {{ item.typeBouchon }}</p>
         <p><span class="infos-product">Volume :</span> {{ item.volume }} Litres</p>
-        <p><span class="infos-product">Qualité :</span> {{ item.qualite }}</p>
         <p><span class="infos-product">Prix :</span> {{ item.prix }} euros</p>
         <p><span class="infos-product">Rapport qualité/prix :</span> {{ rapportQP }} %</p>
       </div>

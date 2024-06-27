@@ -45,6 +45,7 @@ export default {
   methods: {
     deconnexion() {
       this.$store.dispatch("deconnexion")
+      this.$router.push("/")
     }
   }
 }

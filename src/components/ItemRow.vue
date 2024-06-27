@@ -5,8 +5,6 @@
       <p><span class="infos-product">marque :</span> {{ marque }}</p>
       <p><span class="infos-product">Volume :</span> {{ volume }} Litres</p>
       <p><span class="infos-product">prix :</span> {{ prix }} Euros</p>
-      <p><span class="infos-product">Qualité :</span> {{ qualite }}</p>
-      <p><span class="infos-product">Rapport qualité/prix :</span> {{ rapportQP }} %</p>
 
       <p uk-margin v-if="inComparator">
         <router-link class="uk-button uk-button-default uk-margin-right button"
@@ -38,7 +36,6 @@ export default {
     type: String,
     typeBouchon: String,
     volume: Number,
-    qualite: String,
     compare: Number,
     inComparator : Boolean
   },
@@ -52,9 +49,6 @@ export default {
   computed : {
     itemStyles(){
       return this.selected ? "background-color: #F0F3BD" : ""
-    },
-    rapportQP() {
-      return this.qualite/this.prix
     }
   },
   methods: {
